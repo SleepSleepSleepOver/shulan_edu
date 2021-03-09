@@ -27,6 +27,8 @@ class Constant {
   static DownloadController downloadController;
   static const String userUrl =
       'https://shulan-hospital.shulan.com/shulan_pationt_app_private_policy.html';
+  static const String privateUrl =
+      'https://shulan-hospital.shulan.com/shulan_pationt_app_private_policy.html';
   // 登录用户角色
   static loginIsNurse() {
     if (appContext.read<UserInfo>().info['identities'] == 'nurse') {

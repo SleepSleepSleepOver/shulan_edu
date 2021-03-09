@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:common_plugin/common_plugin.dart';
 import 'package:shulan_edu/res/Mcolors.dart';
 import 'package:package_info/package_info.dart';
+import 'package:shulan_edu/utils/Constant.dart';
+import 'package:shulan_edu/view/me/view/setting/ModifyPswPage.dart';
 import 'package:shulan_edu/view/me/view/setting/PushSettingPage.dart';
+import 'package:shulan_edu/view/me/view/setting/ScanLoginPage.dart';
+import 'package:shulan_edu/widget/WebViewPage.dart';
 
 class SettingPage extends StatefulWidget{
   @override
@@ -111,23 +115,42 @@ class SettingPageState extends State<SettingPage>{
         RouteHelper.pushWidget(context,PushSettingPage());
         break;
       case '修改密码':
-
+        RouteHelper.pushWidget(context,ModifyPswPage());
         break;
       case '清除缓存':
+        showDialog(
+            context: context,
+            builder: (ct) {
+              return WDialog(
+                ct,
+                content: "确认清除缓存",
+                confirmTitle: '确认',
+                confirmColor: Mcolors.C0076FF,
+                cancelTitle: '取消',
+                onConfirm: (s) {
 
+                },
+              );
+            });
         break;
 
       case '用户协议':
+        RouteHelper.pushWidget(
+            context,
+            WebViewPage(null,
+                params: {"url": Constant.userUrl, "title": "用户服务协议"}));
+
         break;
-
       case '隐私政策':
-
+        RouteHelper.pushWidget(
+            context,
+            WebViewPage(null,
+                params: {"url": Constant.privateUrl, "title": "隐私政策"}));
         break;
 
       case '关于树兰':
-
+        RouteHelper.pushWidget(context,ScanLoginPage());
         break;
-
       case '个人资料':
 
         break;

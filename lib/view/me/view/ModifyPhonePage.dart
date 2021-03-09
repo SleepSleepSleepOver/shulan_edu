@@ -5,21 +5,21 @@ import 'package:common_plugin/common_plugin.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shulan_edu/res/Mcolors.dart';
 
-class ModifyPswPage extends StatefulWidget {
+class ModifyPhonePage extends StatefulWidget {
   Map userInfo;
 
-  ModifyPswPage();
+  ModifyPhonePage();
 
   @override
-  _ModifyPswPageState createState() => _ModifyPswPageState();
+  _ModifyPhonePageState createState() => _ModifyPhonePageState();
 }
 
-class _ModifyPswPageState extends State<ModifyPswPage> {
+class _ModifyPhonePageState extends State<ModifyPhonePage> {
   bool enable = false;
   final _phoneController = TextEditingController();
   final _verifyCodeController = TextEditingController();
-  final _verifyPassword = TextEditingController();
   var _verifyText = '获取验证码';
   var _verifyBtnState = true;
   var _timer;
@@ -52,38 +52,31 @@ class _ModifyPswPageState extends State<ModifyPswPage> {
                         Container(
                           width: 66.px,
                           child: WText(
-                            "新密码",
+                            "手机号",
                             style: TextStyle(
-                              color: Color(0xff272929),
-                              fontWeight: FontWeight.w500,
+                              color: Mcolors.C272929,
                               fontSize: 16.px,
                             ),
                           ),
                         ),
                         Expanded(
                           child: TextField(
-                            textAlign: TextAlign.right,
-                            // obscureText: true,
+                            maxLength: 11,
+                            controller: _phoneController,
                             onChanged: (s) {
                               setState(() {
                                 if (s.length > 0 &&
-                                    _phoneController.text.length > 0 &&
-                                    _verifyPassword.text.length > 0)
+                                    _verifyCodeController.text.length > 0)
                                   enable = true;
                                 else
                                   enable = false;
                               });
                             },
-                            controller: _verifyCodeController,
-                            keyboardType: TextInputType.text,
-                            inputFormatters: <TextInputFormatter>[
-                              // WhitelistingTextInputFormatter
-                              //     .digitsOnly, //只输入数字
-                              LengthLimitingTextInputFormatter(20) //限制长度
-                            ],
+                            keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              hintText: "请输入新密码",
+                              hintText: "请输入新手机",
+                              counterText: '',
                               contentPadding: EdgeInsets.zero,
                               isDense: true,
                               hintStyle: TextStyle(
@@ -91,13 +84,20 @@ class _ModifyPswPageState extends State<ModifyPswPage> {
                                 fontSize: 16.px,
                               ),
                             ),
-                            style: TextStyle(
-                              color: Color(0xff333333),
-                              fontSize: 16.px,
-                              fontFamily: '',
-                            ),
                           ),
                         ),
+                        GestureDetector(
+                          onTap: _verifyBtnState ? _timeCountfunc : null,
+                          child: Container(
+                            color: Colors.transparent,
+                            child: Center(
+                                child: WText(
+                              _verifyText,
+                              style: TextStyle(
+                                  fontSize: 14.px, color: Mcolors.C36A9A2),
+                            )),
+                          ),
+                        )
                       ],
                     ),
                   ),
@@ -114,40 +114,37 @@ class _ModifyPswPageState extends State<ModifyPswPage> {
                     child: Row(
                       children: <Widget>[
                         Container(
-                          width: 80.px,
+                          width: 66.px,
                           child: WText(
-                            "确认密码",
+                            "验证码",
                             style: TextStyle(
-                              color: Color(0xff272929),
-                              fontWeight: FontWeight.w500,
+                              color: Color(0xff333333),
                               fontSize: 16.px,
                             ),
                           ),
                         ),
                         Expanded(
                           child: TextField(
-                            textAlign: TextAlign.right,
                             // obscureText: true,
                             onChanged: (s) {
                               setState(() {
                                 if (s.length > 0 &&
-                                    _phoneController.text.length > 0 &&
-                                    _verifyCodeController.text.length > 0)
+                                    _phoneController.text.length > 0)
                                   enable = true;
                                 else
                                   enable = false;
                               });
                             },
-                            controller: _verifyPassword,
+                            controller: _verifyCodeController,
                             keyboardType: TextInputType.text,
                             inputFormatters: <TextInputFormatter>[
                               // WhitelistingTextInputFormatter
                               //     .digitsOnly, //只输入数字
-                              LengthLimitingTextInputFormatter(20) //限制长度
+                              LengthLimitingTextInputFormatter(6) //限制长度
                             ],
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              hintText: "再次输入确认",
+                              hintText: "请输入验证码",
                               contentPadding: EdgeInsets.zero,
                               isDense: true,
                               hintStyle: TextStyle(
@@ -170,9 +167,8 @@ class _ModifyPswPageState extends State<ModifyPswPage> {
                     marginRight: 16.px,
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: 30.px),
+                    margin: EdgeInsets.only(top: 30.px,left: 15.px,right: 15.px),
                     height: 48.px,
-                    width: SizeUtils.screenW() - 36.px,
                     child: RaisedButton(
                       padding: EdgeInsets.zero,
                       shape: RoundedRectangleBorder(
@@ -181,11 +177,6 @@ class _ModifyPswPageState extends State<ModifyPswPage> {
                       onPressed: enable
                           ? () {
                               unFocus(mContext);
-                              if (_verifyPassword.text !=
-                                  _verifyCodeController.text) {
-                                Toast.toast("两次输入的密码不一致，请重新输入");
-                                return;
-                              }
                               if (_phoneController.text.isEmpty) {
                                 Toast.toast("请输入验证码");
                                 return;
@@ -205,21 +196,7 @@ class _ModifyPswPageState extends State<ModifyPswPage> {
                                 return;
                               }
                               Toast.toastIndicator();
-                              // MineInfoViewModel()
-                              //     .modifyPsw(_phoneController.text,
-                              //         _verifyCodeController.text)
-                              //     .then((res) {
-                              //   Toast.dissMissLoading();
-                              //   if (res['state'] != 200) {
-                              //     Toast.toast(res['subMsg']);
-                              //   } else {
-                              //     Toast.toast("新密码修改成功");
-                              //     RouteHelper.maybePop(mContext);
-                              //   }
-                              // }).catchError((onError) {
-                              //   Toast.dissMissLoading();
-                              //   Toast.toast("修改新密码失败");
-                              // });
+
                             }
                           : null,
                       child: Container(
@@ -227,8 +204,8 @@ class _ModifyPswPageState extends State<ModifyPswPage> {
                         decoration: BoxDecoration(
                             gradient: LinearGradient(
                               colors: <Color>[
-                                enable ? Color(0xff5975F8) : Color(0xffcccccc),
-                                enable ? Color(0xff566FF9) : Color(0xffcccccc),
+                                enable ? Mcolors.C36A9A2 :Color(0x8036A9A2),
+                                enable ?Mcolors.C36A9A2 : Color(0x8036A9A2),
                               ],
                             ),
                             borderRadius: BorderRadius.circular(4)),

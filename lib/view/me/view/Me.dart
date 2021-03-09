@@ -7,6 +7,7 @@ import 'package:shulan_edu/model/UserInfo.dart';
 import 'package:provider/provider.dart';
 import 'package:shulan_edu/res/Mcolors.dart';
 import 'package:shulan_edu/utils/Constant.dart';
+import 'package:shulan_edu/view/me/view/PersonInfoPage.dart';
 import 'package:shulan_edu/view/me/view/RegisterMsgPage.dart';
 import 'package:shulan_edu/view/me/view/ScanQRCodePage.dart';
 import 'package:shulan_edu/view/me/view/download/DownLoadPage.dart';
@@ -64,6 +65,8 @@ class MeState extends State<Me>{
                                 children: [
                                   GestureDetector(
                                     onTap: () {
+                                      RouteHelper.pushWidget(
+                                          context, PersonInfoPage());
                                       // if (userInfo.isNotEmpty)
                                       //   RouteHelper.pushWidget(
                                       //       context, InfoPage())

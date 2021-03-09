@@ -109,7 +109,7 @@ class WebViewPageState extends State<WebViewPage> {
         urlId = widget.params['bannerId'];
         break;
     }
-
+    print('XXXXXXXXXXXXXXXXXXX: '+title);
     Future.delayed(Duration(seconds: 10), () {
       if (!mounted) return;
       if (!showIndic) return;
