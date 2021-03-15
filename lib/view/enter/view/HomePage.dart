@@ -92,32 +92,32 @@ class _HomePageState extends BaseState<HomePage> with HomeBasePage, WidgetsBindi
           if (index == 0) {
             cIndex = index;
           } else if (index == 2) {
-            if (SpUtil.getString(Constant.TOKEN).isEmpty) {
-              RouteHelper.pushWidget(context, LoginPage());
-              mController.index = cIndex;
-            } else {
-              int status = Constant.appContext.read<UserInfo>().info["authenticationStatus"] ?? 0;
-              if (status == 0) {
-                mController.index = cIndex;
-                // RouteHelper.pushWidget(context, Authentication(isLogin: false, status: status));
-              } else if (status == 1) {
-                mController.index = cIndex;
-                Toast.toast("账号认证中！");
-              } else if (status == 2) {
-                if (Constant.appContext.read<UserInfo>().workInfo.isEmpty) {
-                  mController.index = cIndex;
-                  Toast.toast('需要院内用户才能使用');
-                } else {
-                  cIndex = index;
-                }
-              } else if (status == 3) {
-                Toast.toast("账号认证失败,请重新认证！");
-                mController.index = cIndex;
-              } else if (status == 4) {
-                Toast.toast("运营人员,不能使用");
-                mController.index = cIndex;
-              }
-            }
+            // if (SpUtil.getString(Constant.TOKEN).isEmpty) {
+            //   RouteHelper.pushWidget(context, LoginPage());
+            //   mController.index = cIndex;
+            // } else {
+            //   int status = Constant.appContext.read<UserInfo>().info["authenticationStatus"] ?? 0;
+            //   if (status == 0) {
+            //     mController.index = cIndex;
+            //     // RouteHelper.pushWidget(context, Authentication(isLogin: false, status: status));
+            //   } else if (status == 1) {
+            //     mController.index = cIndex;
+            //     Toast.toast("账号认证中！");
+            //   } else if (status == 2) {
+            //     if (Constant.appContext.read<UserInfo>().workInfo.isEmpty) {
+            //       mController.index = cIndex;
+            //       Toast.toast('需要院内用户才能使用');
+            //     } else {
+            //       cIndex = index;
+            //     }
+            //   } else if (status == 3) {
+            //     Toast.toast("账号认证失败,请重新认证！");
+            //     mController.index = cIndex;
+            //   } else if (status == 4) {
+            //     Toast.toast("运营人员,不能使用");
+            //     mController.index = cIndex;
+            //   }
+            // }
           } else if (index == 3) {
             cIndex = index;
             if (Constant.appContext.read<UserInfo>().info.isNotEmpty) {
@@ -162,7 +162,7 @@ class _HomePageState extends BaseState<HomePage> with HomeBasePage, WidgetsBindi
       tabBuilder: (BuildContext context, int index) {
         switch (index) {
           case 0:
-            return Me();
+            return InfoPage();
           case 1:
             return StudyCenterPage();
           case 2:

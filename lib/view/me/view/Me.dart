@@ -7,6 +7,7 @@ import 'package:shulan_edu/model/UserInfo.dart';
 import 'package:provider/provider.dart';
 import 'package:shulan_edu/res/Mcolors.dart';
 import 'package:shulan_edu/utils/Constant.dart';
+import 'package:shulan_edu/view/me/view/FaceCreatPage.dart';
 import 'package:shulan_edu/view/me/view/PersonInfoPage.dart';
 import 'package:shulan_edu/view/me/view/RegisterMsgPage.dart';
 import 'package:shulan_edu/view/me/view/ScanQRCodePage.dart';
@@ -324,7 +325,7 @@ class MeState extends State<Me>{
   _funItemClick(title) {
     switch (title) {
       case '人脸建档':
-
+        RouteHelper.pushWidget(context, FaceCreatPage());
         break;
       case '考勤记录':
 

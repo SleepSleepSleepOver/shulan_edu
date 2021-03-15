@@ -6,6 +6,7 @@ import 'package:shulan_edu/model/UserInfo.dart';
 import 'package:shulan_edu/res/Mcolors.dart';
 import 'package:shulan_edu/utils/Constant.dart';
 import 'package:shulan_edu/view/me/view/download/DownloadDetailPage.dart';
+import 'package:shulan_edu/view/me/view/help/MyFeedBackPage.dart';
 import 'package:shulan_edu/view/me/view/help/QuestionPage.dart';
 
 
@@ -36,7 +37,7 @@ class _HelpCenterPageState extends State<HelpCenterPage> {
 
     mPages = [
       QuestionPage(),
-      QuestionPage(),
+      MyFeedBackPage(),
     ];
     userInfo = Constant.appContext.read<UserInfo>().info;
     mPageController = PageController(initialPage: widget.mIndex);
@@ -71,6 +72,7 @@ class _HelpCenterPageState extends State<HelpCenterPage> {
                           children: <Widget>[
                             GestureDetector(
                               onTap: () {
+                                unFocus(context);
                                 mPageController.animateToPage(0,
                                     duration: Duration(milliseconds: 300),
                                     curve: Curves.ease);
@@ -110,6 +112,7 @@ class _HelpCenterPageState extends State<HelpCenterPage> {
                             Container(width: 20.px),
                             GestureDetector(
                               onTap: () {
+                                unFocus(context);
                                 mPageController.animateToPage(1,
                                     duration: Duration(milliseconds: 300),
                                     curve: Curves.ease);
@@ -190,5 +193,10 @@ class _HelpCenterPageState extends State<HelpCenterPage> {
         ),
       ),
     );
+  }
+  unFocus(BuildContext mContext) {
+    final otherNode = FocusNode();
+    FocusScope.of(mContext).requestFocus(otherNode);
+    otherNode.unfocus();
   }
 }

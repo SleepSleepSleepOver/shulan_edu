@@ -181,7 +181,7 @@ class _DownLoadPageState extends State<DownLoadPage> {
                     itemBuilder: (BuildContext context, int index) {
                       return mPages[index];
                     },
-                    itemCount: 3,
+                    itemCount: 2,
                   ),
                   status: mstatus),
             ),
