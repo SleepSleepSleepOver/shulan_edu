@@ -12,6 +12,7 @@ import 'package:shulan_edu/res/Mcolors.dart';
 import 'package:shulan_edu/view/info/view/ContinueEduIndexPage.dart';
 import 'package:shulan_edu/view/info/view/DocRoomPage.dart';
 import 'package:shulan_edu/view/info/view/IndexPage.dart';
+import 'package:shulan_edu/view/info/view/InformationPage.dart';
 import 'package:shulan_edu/view/me/view/Me.dart';
 
 
@@ -60,7 +61,7 @@ class _InfoPagePageState extends State<InfoPage> with AutomaticKeepAliveClientMi
       IndexPage(),
       ContinueEduIndexPage(),
       DocRoomPage(),
-      Me(),
+      InformationPage(),
     ];
     mPageController =
         PageController(initialPage: 0);
@@ -344,6 +345,36 @@ class _InfoPagePageState extends State<InfoPage> with AutomaticKeepAliveClientMi
                ),
              ],
            ),
+            Container(
+              height: 32.px,
+              child: GestureDetector(
+                onTap: () {
+                  // RouteHelper.pushWidget(context, SearchPage());
+                },
+                child: Container(
+                  margin: EdgeInsets.only(left: 15.px,right: 15.px),
+                  padding: EdgeInsets.only(left: 11.px),
+                  height: 36.px,
+                  decoration: BoxDecoration(color: Color(0xfff3f4f4), borderRadius: BorderRadius.circular(16)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Image.asset(
+                        "images/search.png",
+                        width: 16.px,
+                      ),
+                      Container(
+                        width: 6,
+                      ),
+                      WText(
+                        "输入关键字搜索课程",
+                        style: TextStyle(color: Mcolors.C9A9E9E, fontSize: 12.px),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
             Expanded(
               child: PageView.builder(
                 onPageChanged: (index) {

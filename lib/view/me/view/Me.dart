@@ -11,6 +11,7 @@ import 'package:shulan_edu/view/me/view/FaceCreatPage.dart';
 import 'package:shulan_edu/view/me/view/PersonInfoPage.dart';
 import 'package:shulan_edu/view/me/view/RegisterMsgPage.dart';
 import 'package:shulan_edu/view/me/view/ScanQRCodePage.dart';
+import 'package:shulan_edu/view/me/view/check/CheckIndexPage.dart';
 import 'package:shulan_edu/view/me/view/download/DownLoadPage.dart';
 import 'package:shulan_edu/view/me/view/setting/SettingPage.dart';
 import 'package:shulan_edu/widget/SDialog.dart';
@@ -328,7 +329,7 @@ class MeState extends State<Me>{
         RouteHelper.pushWidget(context, FaceCreatPage());
         break;
       case '考勤记录':
-
+        RouteHelper.pushWidget(context, CheckIndexPage());
         break;
       case '我的订单':
 

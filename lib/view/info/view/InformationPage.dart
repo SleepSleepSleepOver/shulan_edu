@@ -17,21 +17,18 @@ import 'package:shulan_edu/view/info/viewModel/InfoViewModel.dart';
 import 'package:shulan_edu/widget/WebViewPage.dart';
 
 
-class DocRoomPage extends StatefulWidget {
+class InformationPage extends StatefulWidget {
   @override
-  _DocRoomPageState createState() => _DocRoomPageState();
+  _InformationPageState createState() => _InformationPageState();
 }
 
-class _DocRoomPageState extends State<DocRoomPage> with AutomaticKeepAliveClientMixin {
+class _InformationPageState extends State<InformationPage> with AutomaticKeepAliveClientMixin {
   List bannerList = [];
   List functionalList = [];
   List goodsVideoList = [];
   Status mstatus = Status.LOADING;
   int unreadCount = 0;
   SwiperController mSwiperController = SwiperController();
-  int _badgeNumber = 0;
-  bool fzpyUnread = false;
-  bool isLoading = false;
 
   List expertList = [];
   String programId = "";
@@ -65,16 +62,7 @@ class _DocRoomPageState extends State<DocRoomPage> with AutomaticKeepAliveClient
         child: Column(
           children: <Widget>[
             Container(
-              height: 50.px,
-              padding: EdgeInsets.only(left: 16.px),
-              child: ListView(
-                  padding: EdgeInsets.only(top: 20.px, bottom: 2.px),
-                  scrollDirection: Axis.horizontal,
-                  children: getHorizontalItem()
-              ),
-            ),
-            Container(
-              height: 15.px,
+              height: 20.px,
             ),
             Expanded(
               child: RefreshIndicator(
@@ -107,6 +95,32 @@ class _DocRoomPageState extends State<DocRoomPage> with AutomaticKeepAliveClient
         child: Container(
           padding: EdgeInsets.only(left: 16.px, right: 16.px, bottom: 15.px),
           child: Row(children: [
+            Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    WText(
+                      '患者跌落或坠床应急预案患者跌落或坠床应急预案',
+                      style: TextStyle(fontSize: 14.px, color: Mcolors.C272929,fontWeight: FontWeight.w600),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    Container(
+                      height: 6.px,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        WText(
+                            '2021-02-22',
+                            textAlign: TextAlign.end,
+                            style: TextStyle(fontSize: 12.px, color: Mcolors.C9A9E9E)),
+                      ],
+                    ),
+
+                  ],
+                )),
+            Container(width: 16.px),
             ClipRRect(
               child: Container(
                 color: Color(0xffececec),
@@ -122,25 +136,6 @@ class _DocRoomPageState extends State<DocRoomPage> with AutomaticKeepAliveClient
               ),
               borderRadius: BorderRadius.circular(4.px),
             ),
-            Container(width: 16.px),
-            Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    WText(
-                      '患者跌落或坠床应急预案患者跌落或坠床应急预案',
-                      style: TextStyle(fontSize: 14.px, color: Mcolors.C272929,fontWeight: FontWeight.w600),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    Container(
-                      height: 4.px,
-                    ),
-                    WText(
-                        '李兰娟｜树兰（杭州）医院',
-                        style: TextStyle(fontSize: 12.px, color: Mcolors.C9A9E9E)),
-                  ],
-                ))
           ]),
         ));
   }

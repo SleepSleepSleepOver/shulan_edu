@@ -13,6 +13,7 @@ import 'package:shulan_edu/model/UserInfo.dart';
 import 'package:shulan_edu/res/Mcolors.dart';
 import 'package:shulan_edu/utils/Constant.dart';
 import 'package:shulan_edu/utils/JmessageHelper.dart';
+import 'package:shulan_edu/view/info/view/doc/DoctorIndexPage.dart';
 import 'package:shulan_edu/view/info/viewModel/InfoViewModel.dart';
 import 'package:shulan_edu/widget/WebViewPage.dart';
 
@@ -93,36 +94,6 @@ class _IndexPageState extends State<IndexPage> with AutomaticKeepAliveClientMixi
         value: SystemUiOverlayStyle.dark,
         child: Column(
           children: <Widget>[
-            Container(
-              height: 32.px,
-              child: GestureDetector(
-                onTap: () {
-                  // RouteHelper.pushWidget(context, SearchPage());
-                },
-                child: Container(
-                  margin: EdgeInsets.only(left: 15.px,right: 15.px),
-                  padding: EdgeInsets.only(left: 11.px),
-                  height: 36.px,
-                  decoration: BoxDecoration(color: Color(0xfff3f4f4), borderRadius: BorderRadius.circular(16)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Image.asset(
-                        "images/search.png",
-                        width: 16.px,
-                      ),
-                      Container(
-                        width: 6,
-                      ),
-                      WText(
-                        "输入关键字搜索课程",
-                        style: TextStyle(color: Mcolors.C9A9E9E, fontSize: 12.px),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
             Expanded(
               child: RefreshIndicator(
                 onRefresh: _refresh,
@@ -326,7 +297,7 @@ class _IndexPageState extends State<IndexPage> with AutomaticKeepAliveClientMixi
     ///排列宽度
     return GestureDetector(
       onTap: () {
-
+         RouteHelper.pushWidget(context, DoctorIndexPage());
       },
       child:  Stack(
 

@@ -17,12 +17,12 @@ import 'package:shulan_edu/view/info/viewModel/InfoViewModel.dart';
 import 'package:shulan_edu/widget/WebViewPage.dart';
 
 
-class DocRoomPage extends StatefulWidget {
+class MyClassPage extends StatefulWidget {
   @override
-  _DocRoomPageState createState() => _DocRoomPageState();
+  _MyClassPageState createState() => _MyClassPageState();
 }
 
-class _DocRoomPageState extends State<DocRoomPage> with AutomaticKeepAliveClientMixin {
+class _MyClassPageState extends State<MyClassPage> with AutomaticKeepAliveClientMixin {
   List bannerList = [];
   List functionalList = [];
   List goodsVideoList = [];
@@ -62,37 +62,19 @@ class _DocRoomPageState extends State<DocRoomPage> with AutomaticKeepAliveClient
       backgroundColor: Colors.white,
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.dark,
-        child: Column(
-          children: <Widget>[
-            Container(
-              height: 50.px,
-              padding: EdgeInsets.only(left: 16.px),
-              child: ListView(
-                  padding: EdgeInsets.only(top: 20.px, bottom: 2.px),
-                  scrollDirection: Axis.horizontal,
-                  children: getHorizontalItem()
-              ),
-            ),
-            Container(
-              height: 15.px,
-            ),
-            Expanded(
-              child: RefreshIndicator(
-                onRefresh: _refresh,
-                child:BasePage(
-                  status: mstatus,
-                  child: ListView.builder(
-                    controller: loadNotifyController,
-                    padding: EdgeInsets.zero,
-                    itemBuilder: (ctx, index) {
-                      return getVideoItem(ctx, index);
-                    },
-                    itemCount: (videoList ?? []).length,
-                  ),
-                )
+        child: RefreshIndicator(
+            onRefresh: _refresh,
+            child:BasePage(
+              status: mstatus,
+              child: ListView.builder(
+                controller: loadNotifyController,
+                padding: EdgeInsets.zero,
+                itemBuilder: (ctx, index) {
+                  return getVideoItem(ctx, index);
+                },
+                itemCount: (videoList ?? []).length,
               ),
             )
-          ],
         ),
       ),
     );
@@ -130,7 +112,7 @@ class _DocRoomPageState extends State<DocRoomPage> with AutomaticKeepAliveClient
                     WText(
                       '患者跌落或坠床应急预案患者跌落或坠床应急预案',
                       style: TextStyle(fontSize: 14.px, color: Mcolors.C272929,fontWeight: FontWeight.w600),
-                      maxLines: 2,
+                      maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
                     Container(
@@ -139,6 +121,17 @@ class _DocRoomPageState extends State<DocRoomPage> with AutomaticKeepAliveClient
                     WText(
                         '李兰娟｜树兰（杭州）医院',
                         style: TextStyle(fontSize: 12.px, color: Mcolors.C9A9E9E)),
+                    Container(
+                      height: 8.px,
+                    ),
+                    Row(
+                      children: [
+                        Image.asset('images/eye.png',width: 15.px,height: 10.px,fit: BoxFit.cover,),
+                        WText(
+                            '   2300',
+                            style: TextStyle(fontSize: 12.px, color: Mcolors.C36A9A2)),
+                      ],
+                    )
                   ],
                 ))
           ]),
