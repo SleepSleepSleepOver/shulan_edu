@@ -14,6 +14,7 @@ import 'package:shulan_edu/res/Mcolors.dart';
 import 'package:shulan_edu/utils/Constant.dart';
 import 'package:shulan_edu/utils/JmessageHelper.dart';
 import 'package:shulan_edu/utils/StringRegUtils.dart';
+import 'package:shulan_edu/view/info/view/continue/SelectClassPage.dart';
 import 'package:shulan_edu/view/info/viewModel/InfoViewModel.dart';
 import 'package:shulan_edu/widget/WebViewPage.dart';
 
@@ -124,6 +125,7 @@ class _ContinueEduIndexPageState extends State<ContinueEduIndexPage> with Automa
                       padding: EdgeInsets.only(top: 18.px,left: 32.px,right: 32.px),
                       child: Row(children: [
                         funItemView('xuanke', '选课', () {
+                          RouteHelper.pushWidget(context, SelectClassPage());
                         }),
                         funItemView('gouka', '购卡', () {
                         }),

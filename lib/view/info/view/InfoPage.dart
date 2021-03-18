@@ -9,7 +9,7 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:provider/provider.dart';
 import 'package:shulan_edu/http/Api.dart';
 import 'package:shulan_edu/res/Mcolors.dart';
-import 'package:shulan_edu/view/info/view/ContinueEduIndexPage.dart';
+import 'file:///C:/Users/sinyo/AndroidStudioProjects/shulan_edu/lib/view/info/view/continue/ContinueEduIndexPage.dart';
 import 'package:shulan_edu/view/info/view/DocRoomPage.dart';
 import 'package:shulan_edu/view/info/view/IndexPage.dart';
 import 'package:shulan_edu/view/info/view/InformationPage.dart';

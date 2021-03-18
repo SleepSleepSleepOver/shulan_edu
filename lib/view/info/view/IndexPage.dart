@@ -486,7 +486,7 @@ class _IndexPageState extends State<IndexPage> with AutomaticKeepAliveClientMixi
             Stack(
               alignment: Alignment.bottomRight,
               children: [
-                Image.network('${Constant.API_HOST_DOC()}${Api.getImageWithId}${ bannerList[1]['coverPicture']}',width: 150.px,height: 85.px,fit: BoxFit.cover,),
+                Image.network('${Constant.API_HOST_DOC()}${Api.getImageWithId}${ bannerList[0]['coverPicture']}',width: 150.px,height: 85.px,fit: BoxFit.cover,),
                 // Image.asset('images/cha.png',width: 150.px,height: 85.px,),
                 Positioned(
                   right: 14.px,
