@@ -17,6 +17,7 @@ dependencies:
     flutter_verification_box: ^1.0.4
     flutter_qr_reader: ^1.0.3
     pull_to_refresh: 1.6.3
+    flutter_rating_bar: ^3.2.0
 
     common_plugin:
       git:

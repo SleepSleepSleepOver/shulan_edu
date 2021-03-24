@@ -5,8 +5,10 @@ import 'package:shulan_edu/http/Api.dart';
 import 'package:shulan_edu/res/Mcolors.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:shulan_edu/utils/Constant.dart';
+import 'package:shulan_edu/view/info/view/continue/ProjectDetailPage.dart';
 import 'package:shulan_edu/view/info/viewModel/InfoViewModel.dart';
 import 'package:shulan_edu/view/study/view/StudyTotalPage.dart';
+import 'package:shulan_edu/widget/SelectWidget.dart';
 import 'package:shulan_edu/widget/WebViewPage.dart';
 
 
@@ -26,14 +28,17 @@ class SelectClassPageState extends State<SelectClassPage>{
   int _badgeNumber = 0;
 
   List classList = []; //列表
-  //四个排序的状态  0 未选中  1 向下  2向上
-  int ZHPX =0;
-  //学分
-  int XF =0;
-  //发布时间
-  int FBSJ = 0;
-  //点击率
-  int DJL = 0;
+  //四个排序的状态    0 向下  1向上
+  //科室
+  int KS =0;
+  //学分类型
+  int XFLX =0;
+  //综合排序
+  int ZHPX = 0;
+
+  String ksName = '科室类型';
+  String xfName = '学分类别';
+  String zhpxName = '综合排序';
 
 
 
@@ -114,109 +119,124 @@ class SelectClassPageState extends State<SelectClassPage>{
     );
   }
   Widget sortWidget(){
-    return  Container(
-        margin: EdgeInsets.only(top: 20.px,left: 15.px,right: 15.px,bottom: 7.px),
-        child:  Row(
-          children: [
-            Expanded(
-              flex:2,
-              child: GestureDetector(
-                onTap: (){
-                  changeState('内科专家');
-                },
-                child: Row(
-                  children: [
-                    WText(
-                      '内科专家',
-                      style:TextStyle(fontSize: 12.px,
-                          color: Mcolors.C272929),
+    return  Builder(builder: (ctxxx){
+          return Container(
+              margin: EdgeInsets.only(top: 20.px,left: 15.px,right: 15.px,bottom: 7.px),
+              child:  Row(
+                children: [
+                  Expanded(
+                    flex:2,
+                    child: GestureDetector(
+                      onTap: (){
+                        changeState(ctxxx,'科室类型');
+                      },
+                      child: Row(
+                        children: [
+                          WText(
+                            ksName,
+                            style:TextStyle(fontSize: 12.px,
+                                color: Mcolors.C272929),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(left: 6.px),
+                            child: Image.asset('images/ic_sort_$KS.png',width: 8.px,height: 6.px,fit: BoxFit.cover,),
+                          )
+                        ],
+                      ),
                     ),
-                    Container(
-                      margin: EdgeInsets.only(left: 6.px),
-                      child: Image.asset('images/select_$ZHPX.png',width: 8.px,height: 12.px,fit: BoxFit.cover,),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            Expanded(
-              flex:2,
-              child: GestureDetector(
-                onTap: (){
-                  changeState('学分类别');
-                },
-                child: Row(
-                  mainAxisAlignment:  MainAxisAlignment.center,
-                  children: [
-                    WText(
-                      '学分类别',
-                      style:TextStyle(fontSize: 12.px,
-                          color: Mcolors.C272929),
+                  ),
+                  Expanded(
+                    flex:2,
+                    child: GestureDetector(
+                      onTap: (){
+                        changeState(ctxxx,'学分类别');
+                      },
+                      child: Row(
+                        mainAxisAlignment:  MainAxisAlignment.center,
+                        children: [
+                          WText(
+                            xfName,
+                            style:TextStyle(fontSize: 12.px,
+                                color: Mcolors.C272929),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(left: 6.px),
+                            child: Image.asset('images/ic_sort_$XFLX.png',width: 8.px,height: 6.px,fit: BoxFit.cover,),
+                          )
+                        ],
+                      ),
                     ),
-                    Container(
-                      margin: EdgeInsets.only(left: 6.px),
-                      child: Image.asset('images/select_$XF.png',width: 8.px,height: 12.px,fit: BoxFit.cover,),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            Expanded(
-              flex:2,
-              child: GestureDetector(
-                onTap: (){
-                  changeState('综合排序');
-                },
-                child: Row(
-                  mainAxisAlignment:  MainAxisAlignment.end,
-                  children: [
-                    WText(
-                      '综合排序',
-                      style:TextStyle(fontSize: 12.px,
-                          color: Mcolors.C272929),
+                  ),
+                  Expanded(
+                    flex:2,
+                    child: GestureDetector(
+                      onTap: (){
+                        changeState(ctxxx,'综合排序');
+                      },
+                      child: Row(
+                        mainAxisAlignment:  MainAxisAlignment.end,
+                        children: [
+                          WText(
+                            zhpxName,
+                            style:TextStyle(fontSize: 12.px,
+                                color: Mcolors.C272929),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(left: 6.px),
+                            child: Image.asset('images/ic_sort_$ZHPX.png',width: 8.px,height: 6.px,fit: BoxFit.cover,),
+                          )
+                        ],
+                      ),
                     ),
-                    Container(
-                      margin: EdgeInsets.only(left: 6.px),
-                      child: Image.asset('images/select_$FBSJ.png',width: 8.px,height: 12.px,fit: BoxFit.cover,),
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ],
-        )
-    );
+                  ),
+                ],
+              )
+          );
+    });
   }
-  changeState(String name){
+  changeState(BuildContext ctx,String name){
     switch(name){
+      case '科室类型':
+        KS ++;
+        if(KS>1){
+          KS = 0;
+        }
+        setState(() {
+
+        });
+       if(KS == 1){
+         BotToast.showAttachedWidget(
+             targetContext: ctx,
+             verticalOffset: 0.px,
+             onClose: (){
+               print('XXXXXXXXXXXXXXXXXXXX:'+'我关闭了');
+               setState(() {
+                 KS = 0;
+               });
+             },
+             attachedBuilder: (_) {
+               return Container(
+                 alignment: Alignment.topCenter,
+                 height: SizeUtils.screenH() - 70.px - SizeUtils.statusBar(),
+                 color: Color(0xFFa5a4a5).withAlpha(90),
+                 child: SelectWidget(),
+               );
+             });
+       }
+        break;
+      case '学分类别':
+        XFLX ++;
+        if(XFLX>1){
+          XFLX = 0;
+        }
+        break;
       case '综合排序':
         ZHPX ++;
-        if(ZHPX>2){
+        if(ZHPX>1){
           ZHPX = 0;
         }
         break;
-      case '学分':
-        XF ++;
-        if(XF>2){
-          XF = 0;
-        }
-        break;
-      case '发布时间':
-        FBSJ ++;
-        if(FBSJ>2){
-          FBSJ = 0;
-        }
-        break;
-      case '点击率':
-        DJL ++;
-        if(DJL>2){
-          DJL = 0;
-        }
-        break;
     }
-    setState(() {
-
-    });
   }
 
   Widget _classItem(BuildContext context, int index) {
@@ -224,7 +244,7 @@ class SelectClassPageState extends State<SelectClassPage>{
     return GestureDetector(
         onTap: () {
           // 跳转 网页 url;
-
+           RouteHelper.pushWidget(context, ProjectDetailPage());
         },
         child: Container(
           padding: EdgeInsets.only(left: 16.px, right: 16.px, bottom: 10.px),

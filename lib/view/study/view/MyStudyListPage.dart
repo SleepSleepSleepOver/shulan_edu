@@ -14,6 +14,7 @@ import 'package:shulan_edu/res/Mcolors.dart';
 import 'package:shulan_edu/utils/Constant.dart';
 import 'package:shulan_edu/utils/JmessageHelper.dart';
 import 'package:shulan_edu/view/info/viewModel/InfoViewModel.dart';
+import 'package:shulan_edu/view/study/view/LookImgPage.dart';
 import 'package:shulan_edu/widget/WebViewPage.dart';
 
 
@@ -124,7 +125,7 @@ class _MyStudyListPageState extends State<MyStudyListPage> with AutomaticKeepAli
                     GestureDetector(
                         onTap: () {
                           // 跳转 网页 url;
-
+                            RouteHelper.pushWidget(context, LookImgPage());
                         },
                         child:Row(
                           mainAxisAlignment: MainAxisAlignment.end,
