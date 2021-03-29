@@ -13,6 +13,9 @@ import 'package:shulan_edu/widget/WebViewPage.dart';
 
 
 class SelectClassPage extends StatefulWidget{
+
+
+
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -121,7 +124,7 @@ class SelectClassPageState extends State<SelectClassPage>{
   Widget sortWidget(){
     return  Builder(builder: (ctxxx){
           return Container(
-              margin: EdgeInsets.only(top: 20.px,left: 15.px,right: 15.px,bottom: 7.px),
+              padding: EdgeInsets.only(top: 20.px,left: 15.px,right: 15.px,bottom: 7.px),
               child:  Row(
                 children: [
                   Expanded(
@@ -131,11 +134,20 @@ class SelectClassPageState extends State<SelectClassPage>{
                         changeState(ctxxx,'科室类型');
                       },
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          WText(
-                            ksName,
-                            style:TextStyle(fontSize: 12.px,
-                                color: Mcolors.C272929),
+                          Container(
+                            constraints: BoxConstraints(
+                                minWidth: 50.px,
+                                maxWidth: 100.px
+                            ),
+                            child: WText(
+                              ksName,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style:TextStyle(fontSize: 12.px,
+                                  color: Mcolors.C272929),
+                            ),
                           ),
                           Container(
                             margin: EdgeInsets.only(left: 6.px),
@@ -154,10 +166,18 @@ class SelectClassPageState extends State<SelectClassPage>{
                       child: Row(
                         mainAxisAlignment:  MainAxisAlignment.center,
                         children: [
-                          WText(
-                            xfName,
-                            style:TextStyle(fontSize: 12.px,
-                                color: Mcolors.C272929),
+                          Container(
+                            constraints: BoxConstraints(
+                                minWidth: 50.px,
+                                maxWidth: 100.px
+                            ),
+                            child: WText(
+                              xfName,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style:TextStyle(fontSize: 12.px,
+                                  color: Mcolors.C272929),
+                            ),
                           ),
                           Container(
                             margin: EdgeInsets.only(left: 6.px),
@@ -176,10 +196,18 @@ class SelectClassPageState extends State<SelectClassPage>{
                       child: Row(
                         mainAxisAlignment:  MainAxisAlignment.end,
                         children: [
-                          WText(
-                            zhpxName,
-                            style:TextStyle(fontSize: 12.px,
-                                color: Mcolors.C272929),
+                          Container(
+                            constraints: BoxConstraints(
+                                minWidth: 50.px,
+                                maxWidth: 100.px
+                            ),
+                            child: WText(
+                              zhpxName,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style:TextStyle(fontSize: 12.px,
+                                  color: Mcolors.C272929),
+                            ),
                           ),
                           Container(
                             margin: EdgeInsets.only(left: 6.px),
@@ -198,6 +226,12 @@ class SelectClassPageState extends State<SelectClassPage>{
     switch(name){
       case '科室类型':
         KS ++;
+        if(ZHPX == 1){
+          ZHPX =0;
+        }
+        if(XFLX == 1){
+          XFLX =0;
+        }
         if(KS>1){
           KS = 0;
         }
@@ -205,40 +239,88 @@ class SelectClassPageState extends State<SelectClassPage>{
 
         });
        if(KS == 1){
-         BotToast.showAttachedWidget(
-             targetContext: ctx,
-             verticalOffset: 0.px,
-             onClose: (){
-               print('XXXXXXXXXXXXXXXXXXXX:'+'我关闭了');
-               setState(() {
-                 KS = 0;
-               });
-             },
-             attachedBuilder: (_) {
-               return Container(
-                 alignment: Alignment.topCenter,
-                 height: SizeUtils.screenH() - 70.px - SizeUtils.statusBar(),
-                 color: Color(0xFFa5a4a5).withAlpha(90),
-                 child: SelectWidget(),
-               );
-             });
+         BotToast.cleanAll();
+         showDialog(ctx,'科室类型');
        }
         break;
       case '学分类别':
         XFLX ++;
+        if(ZHPX == 1){
+          ZHPX =0;
+        }
+        if(KS == 1){
+          KS =0;
+        }
         if(XFLX>1){
           XFLX = 0;
+        }
+        setState(() {
+
+        });
+        if(XFLX == 1){
+          BotToast.cleanAll();
+          showDialog(ctx,'学分类别');
         }
         break;
       case '综合排序':
         ZHPX ++;
+        if(XFLX == 1){
+          XFLX =0;
+        }
+        if(KS == 1){
+          KS =0;
+        }
         if(ZHPX>1){
           ZHPX = 0;
+        }
+        setState(() {
+
+        });
+        if(ZHPX == 1){
+          BotToast.cleanAll();
+          showDialog(ctx,'综合排序');
         }
         break;
     }
   }
+  showDialog(ctx,name){
+    BotToast.showAttachedWidget(
+        targetContext: ctx,
+        verticalOffset: 0.px,
+        onClose: (){
+          print('XXXXXXXXXXXXXXXXXXXX:'+'我关闭了');
+        },
 
+        attachedBuilder: (_) {
+          return Container(
+            alignment: Alignment.topCenter,
+            height: SizeUtils.screenH() - 70.px - SizeUtils.statusBar(),
+            color: Color(0xFFa5a4a5).withAlpha(90),
+            child: SelectWidget(
+                onConfirm: (text){
+                  setState(() {
+                    switch(name){
+                      case '科室类型':
+                        ksName = text;
+                         KS = 0;
+                    break;
+                    case '学分类别':
+                      xfName = text;
+                      XFLX = 0;
+                    break;
+                    case '综合排序':
+                      zhpxName = text;
+                      ZHPX = 0;
+                    break;
+                    }
+                  });
+                  BotToast.cleanAll();
+                }
+            ),
+          );
+        }
+    );
+  }
   Widget _classItem(BuildContext context, int index) {
     var item = classList[index];
     return GestureDetector(

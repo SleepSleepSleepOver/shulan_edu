@@ -8,6 +8,12 @@ import 'package:common_plugin/src/widget/WText.dart';
 import 'package:common_plugin/src/layout/BasePage.dart';
 import 'package:shulan_edu/res/Mcolors.dart';
 class SelectWidget extends StatefulWidget {
+
+  final Function(dynamic text) onConfirm;
+
+
+  SelectWidget({this.onConfirm});
+
   @override
   _SelectWidgetState createState() => _SelectWidgetState();
 }
@@ -99,24 +105,30 @@ class _SelectWidgetState extends State<SelectWidget> {
     // Map res = partDeptList[index];
     return GestureDetector(
       onTap: () {
+        _pIndex = index;
+        print('XXXXXXXXXXXX: '+_pIndex.toString());
         setState(() {
-          _pIndex = index;
           // childDeptList = partDeptList[index]["children"];
           // if (childDeptList.length == 0) {
           //   Navigator.pop(context, res);
           // }
         });
+
       },
       child: Container(
         alignment: Alignment.centerLeft,
         padding: EdgeInsets.only(
           right: 16.px,
         ),
+        margin: EdgeInsets.only(
+            bottom: 5.px
+        ),
         decoration: BoxDecoration(
           color: _pIndex == index ? Colors.white : Mcolors.CF2F2F2,
         ),
         height: 40.px,
-        child: Row(children: [
+        child: Row(
+            children: [
          Offstage(
            offstage: _pIndex != index,
            child:Container(
@@ -124,21 +136,23 @@ class _SelectWidgetState extends State<SelectWidget> {
              child: Image.asset('images/ic_go.png',width: 5.px,height: 8.px,fit: BoxFit.cover,),
            ),
          ),
-          Container(
-            margin: EdgeInsets.only(left: _pIndex == index?2.px:20.px),
-            child:  WText(
-              '妇产科',
-              maxLines: 2,
-              overflow:TextOverflow.ellipsis,
-              style: TextStyle(
-                color: Color(
-                  _pIndex == index ? 0xFF36A9A2 : 0xff272929,
+          Expanded(
+            child: Container(
+              margin: EdgeInsets.only(left: _pIndex == index?2.px:20.px),
+              child:  WText(
+                '妇产科妇产科妇产科',
+                maxLines: 2,
+                overflow:TextOverflow.ellipsis,
+                style: TextStyle(
+                  color: Color(
+                    _pIndex == index ? 0xFF36A9A2 : 0xff272929,
+                  ),
+                  fontSize: 13.px,
+                  fontWeight: FontWeight.w500,
                 ),
-                fontSize: 13.px,
-                fontWeight: FontWeight.w500,
               ),
             ),
-          ),
+          )
         ]
         ),
       ),
@@ -153,7 +167,7 @@ class _SelectWidgetState extends State<SelectWidget> {
           setState(() {
             _cIndex = index;
             // Navigator.pop(context, item);
-
+            handleCallBack(widget.onConfirm, content: '不孕不育高年专家'+_cIndex.toString());
           });
         },
         child: Row(
@@ -189,5 +203,10 @@ class _SelectWidgetState extends State<SelectWidget> {
             )
           ],
         ));
+  }
+  handleCallBack(Function callBack, {String content}) {
+    if (callBack != null) {
+      callBack(content);
+    }
   }
 }

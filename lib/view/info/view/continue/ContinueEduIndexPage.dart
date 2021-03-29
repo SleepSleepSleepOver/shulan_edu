@@ -16,6 +16,8 @@ import 'package:shulan_edu/utils/JmessageHelper.dart';
 import 'package:shulan_edu/utils/StringRegUtils.dart';
 import 'package:shulan_edu/view/info/view/continue/SelectClassPage.dart';
 import 'package:shulan_edu/view/info/viewModel/InfoViewModel.dart';
+import 'package:shulan_edu/view/study/view/MyStudyCardPage.dart';
+import 'package:shulan_edu/view/study/view/buy/StudyCardBuyPage.dart';
 import 'package:shulan_edu/widget/WebViewPage.dart';
 
 
@@ -128,10 +130,13 @@ class _ContinueEduIndexPageState extends State<ContinueEduIndexPage> with Automa
                           RouteHelper.pushWidget(context, SelectClassPage());
                         }),
                         funItemView('gouka', '购卡', () {
+                          RouteHelper.pushWidget(context, StudyCardBuyPage());
                         }),
                         funItemView('bangka', '绑卡', () {
+                          RouteHelper.pushWidget(context, MyStudyCardPage());
                         }),
                         funItemView('xuefen', '学分', () {
+                          RouteHelper.pushWidget(context, StudyCardBuyPage());
                         }),
                       ]),
                     ),

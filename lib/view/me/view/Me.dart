@@ -14,6 +14,8 @@ import 'package:shulan_edu/view/me/view/ScanQRCodePage.dart';
 import 'package:shulan_edu/view/me/view/check/CheckIndexPage.dart';
 import 'package:shulan_edu/view/me/view/download/DownLoadPage.dart';
 import 'package:shulan_edu/view/me/view/setting/SettingPage.dart';
+import 'package:shulan_edu/view/study/view/MyStudyCardPage.dart';
+import 'package:shulan_edu/view/study/view/order/OrderIndexPage.dart';
 import 'package:shulan_edu/widget/SDialog.dart';
 
 
@@ -256,6 +258,7 @@ class MeState extends State<Me>{
                         getItemCell('离线缓存',icon: 'download',),
                         getItemCell('客服中心',icon: 'support',content: '400-3456-6789',showArrow: false),
                         getItemCell('设置',icon: 'settings',),
+                        getItemCell('我的学习卡',icon: 'settings',),
                       ],
                     ),
                   )
@@ -332,9 +335,8 @@ class MeState extends State<Me>{
         RouteHelper.pushWidget(context, CheckIndexPage());
         break;
       case '我的订单':
-
+        RouteHelper.pushWidget(context, OrderIndexPage());
         break;
-
       case '离线缓存':
         RouteHelper.pushWidget(context, DownLoadPage());
         break;
@@ -342,7 +344,9 @@ class MeState extends State<Me>{
       case '客服中心':
 
         break;
-
+      case '我的学习卡':
+        RouteHelper.pushWidget(context, MyStudyCardPage());
+        break;
       case '设置':
         RouteHelper.pushWidget(context,SettingPage());
         break;
