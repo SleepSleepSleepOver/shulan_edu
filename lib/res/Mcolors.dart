@@ -99,4 +99,6 @@ class Mcolors {
   static const Color C5C481D = Color(0xff5C481D);
   static const Color CFEF1DD = Color(0xffFEF1DD);
   static const Color CF4DAAE = Color(0xffF4DAAE);
+  static const Color CE6E6E6 = Color(0xffE6E6E6);
+  static const Color C18B09F = Color(0xff18B09F);
 }

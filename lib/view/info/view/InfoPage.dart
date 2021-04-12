@@ -13,6 +13,7 @@ import 'file:///C:/Users/sinyo/AndroidStudioProjects/shulan_edu/lib/view/info/vi
 import 'package:shulan_edu/view/info/view/DocRoomPage.dart';
 import 'package:shulan_edu/view/info/view/IndexPage.dart';
 import 'package:shulan_edu/view/info/view/InformationPage.dart';
+import 'package:shulan_edu/view/info/view/search/SearchPage.dart';
 import 'package:shulan_edu/view/me/view/Me.dart';
 
 
@@ -349,7 +350,7 @@ class _InfoPagePageState extends State<InfoPage> with AutomaticKeepAliveClientMi
               height: 32.px,
               child: GestureDetector(
                 onTap: () {
-                  // RouteHelper.pushWidget(context, SearchPage());
+                  RouteHelper.pushWidget(context, SearchPage());
                 },
                 child: Container(
                   margin: EdgeInsets.only(left: 15.px,right: 15.px),
@@ -386,6 +387,7 @@ class _InfoPagePageState extends State<InfoPage> with AutomaticKeepAliveClientMi
                 itemBuilder: (BuildContext context, int index) {
                   return mPages[index];
                 },
+                physics: NeverScrollableScrollPhysics(),
                 itemCount: mPages.length,
               ),
             ),

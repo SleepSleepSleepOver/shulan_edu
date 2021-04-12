@@ -65,12 +65,15 @@ class _DocRoomPageState extends State<DocRoomPage> with AutomaticKeepAliveClient
         child: Column(
           children: <Widget>[
             Container(
-              height: 50.px,
-              padding: EdgeInsets.only(left: 16.px),
-              child: ListView(
-                  padding: EdgeInsets.only(top: 20.px, bottom: 2.px),
+              height: 35.px,
+              margin:  EdgeInsets.only(top: 25.px,),
+              padding: EdgeInsets.only(left: 16.px,bottom: 3.px),
+              child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  children: getHorizontalItem()
+                  padding: EdgeInsets.only(top: 0.px,),
+                  itemBuilder: getHorizontalItem2,
+                  itemCount: expertList.length,
+                shrinkWrap: true,
               ),
             ),
             Container(
@@ -102,7 +105,7 @@ class _DocRoomPageState extends State<DocRoomPage> with AutomaticKeepAliveClient
     return GestureDetector(
         onTap: () {
           // 跳转 网页 url;
-
+      RouteHelper.pushWidget(context, DocRoomPage());
         },
         child: Container(
           padding: EdgeInsets.only(left: 16.px, right: 16.px, bottom: 15.px),
@@ -158,6 +161,7 @@ class _DocRoomPageState extends State<DocRoomPage> with AutomaticKeepAliveClient
       Map expertItem = expertList[i];
       items.add(GestureDetector(
         onTap: () {
+          print('XXXXXXXXXXXXXXXXXXXXXXX: '+programId);
           int index = getSelectProgramIndex(programId);
           if (index != i) {
             currentPage = 1;
@@ -192,6 +196,45 @@ class _DocRoomPageState extends State<DocRoomPage> with AutomaticKeepAliveClient
       ));
     }
     return items;
+  }
+  // 视频
+  Widget getHorizontalItem2(context,i) {
+    Map expertItem = expertList[i];
+    return GestureDetector(
+      onTap: () {
+        print('XXXXXXXXXXXXXXXXXXXXXXX: '+programId);
+        int index = getSelectProgramIndex(programId);
+        if (index != i) {
+          currentPage = 1;
+          isEnd = false;
+          videoList.clear();
+          getVideoListOfProgram(expertList[i]['programId'], false, page: currentPage);
+        }
+        setState(() {
+          programId = expertList[i]['programId'];
+        });
+      },
+      child: Container(
+        margin: EdgeInsets.only(right: 10.px),
+        padding: EdgeInsets.only(left: 7.px, right: 7.px,),
+        height: 26.px,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          gradient: i == getSelectProgramIndex(programId)
+              ? LinearGradient(colors: [
+            Color(0xFF36A9A2),
+            Color(0xFF36A9A2),
+          ])
+              : null,
+          shape: BoxShape.rectangle,
+          borderRadius: BorderRadius.circular(2.px),
+        ),
+        child: WText(
+          expertItem['programName'] ?? '',
+          style: TextStyle(color: i == getSelectProgramIndex(programId) ? Color(0xffffffff) : Color(0xff999999), fontSize: 12.px),
+        ),
+      ),
+    );
   }
   /// 获取专家讲堂下的视频列表
   getVideoListOfProgram(String deptId, bool isGoods, {int page, bool showloading = true}) {

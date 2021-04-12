@@ -7,6 +7,8 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:shulan_edu/utils/Constant.dart';
 import 'package:shulan_edu/view/info/viewModel/InfoViewModel.dart';
 import 'package:shulan_edu/view/study/view/StudyTotalPage.dart';
+import 'package:shulan_edu/view/study/view/test/ClassResultPage.dart';
+import 'package:shulan_edu/view/study/view/test/TestPage.dart';
 import 'package:shulan_edu/widget/WebViewPage.dart';
 
 
@@ -270,7 +272,7 @@ class StudyCenterPageState extends State<StudyCenterPage>{
             GestureDetector(
                 onTap: () {
                   // 跳转 网页 url;
-
+                  RouteHelper.pushWidget(context, TestPage());
                 },
                 child:Container(
                   alignment: Alignment.center,
@@ -509,7 +511,7 @@ class StudyCenterPageState extends State<StudyCenterPage>{
     return GestureDetector(
         onTap: () {
           // 跳转 网页 url;
-
+          RouteHelper.pushWidget(context, ClassResultPage());
         },
         child: Container(
           padding: EdgeInsets.only(left: 16.px, right: 16.px, bottom: 10.px),
