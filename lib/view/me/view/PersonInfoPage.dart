@@ -8,6 +8,7 @@ import 'package:shulan_edu/http/Api.dart';
 import 'package:shulan_edu/model/UserInfo.dart';
 import 'package:shulan_edu/res/Mcolors.dart';
 import 'package:shulan_edu/utils/Constant.dart';
+import 'package:shulan_edu/utils/ImagePicker.dart';
 import 'package:shulan_edu/view/me/view/ModifyIdCardPage.dart';
 import 'package:shulan_edu/view/me/view/ModifyPhonePage.dart';
 import 'package:shulan_edu/view/me/view/help/HelpCenterPage.dart';
@@ -201,7 +202,8 @@ class _PersonInfoPageState extends State<PersonInfoPage> {
                 GestureDetector(
                   onTap: () {
                     RouteHelper.maybePop(ct);
-                    ImagePickers.openCamera().then((medias) {
+                    ImagePicker()
+                        .pickerImage(PickImageType.CAMERA).then((medias) {
                       _pickImage(medias, info);
                     });
                   },
@@ -220,7 +222,8 @@ class _PersonInfoPageState extends State<PersonInfoPage> {
                 GestureDetector(
                   onTap: () {
                     RouteHelper.maybePop(ct);
-                    ImagePickers.pickerPaths().then((medias) {
+                    ImagePicker()
+                        .pickerImage(PickImageType.GALLERY).then((medias) {
                       _pickImage(medias[0], info);
                     });
                   },

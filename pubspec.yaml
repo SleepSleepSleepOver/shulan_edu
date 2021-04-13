@@ -13,16 +13,16 @@ dependencies:
     flutter_localizations:
       sdk: flutter
 
-    flutter_inapp_purchase: ^3.0.1
+#    flutter_inapp_purchase: ^3.0.1
     flutter_verification_box: ^1.0.4
     flutter_qr_reader: ^1.0.3
-    pull_to_refresh: 1.6.3
+    pull_to_refresh: ^1.6.5
     flutter_rating_bar: ^3.2.0
 
     common_plugin:
       git:
         url: https://devops.rubikstack.com:10080/surface/common_plugin.git
-        ref: master
+        ref: flutter-2.0.0
 
 dev_dependencies:
   flutter_test:

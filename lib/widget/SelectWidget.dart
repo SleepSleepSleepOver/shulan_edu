@@ -63,7 +63,6 @@ class _SelectWidgetState extends State<SelectWidget> {
   Widget build(BuildContext context) {
     return StatefulBuilder(builder: (btContext, state) {
       return Scaffold(
-        resizeToAvoidBottomPadding: true,
         backgroundColor: Colors.transparent,
         body: Container(
            margin: EdgeInsets.only(bottom: SizeUtils.screenH()*0.18),

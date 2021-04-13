@@ -56,7 +56,6 @@ class SDialog extends Dialog {
   Widget build(BuildContext context) {
     return StatefulBuilder(builder: (btContext, state) {
       return Scaffold(
-        resizeToAvoidBottomPadding: true,
         backgroundColor: Colors.transparent,
         body: Center(
           child: Container(

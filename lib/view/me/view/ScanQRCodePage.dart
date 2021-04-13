@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_qr_reader/flutter_qr_reader.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shulan_edu/res/Mcolors.dart';
+import 'package:shulan_edu/utils/ImagePicker.dart';
 import 'package:shulan_edu/utils/PermissionUtil.dart';
 import 'package:common_plugin/common_plugin.dart';
 
@@ -38,7 +38,8 @@ class _ScanQRCodePageState extends State<ScanQRCodePage> {
         rightWidget: GestureDetector(
             onTap: () async {
               var image =
-                  await ImagePicker.pickImage(source: ImageSource.gallery);
+                  await ImagePicker()
+                      .pickerImage(PickImageType.CAMERA);
               if (image == null) return;
               final rest = await FlutterQrReader.imgScan(image);
                 // RouteHelper.pushWidget(

@@ -4,6 +4,7 @@ import 'package:common_plugin/common_plugin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shulan_edu/res/Mcolors.dart';
+import 'package:shulan_edu/utils/ImagePicker.dart';
 
 
 
@@ -234,7 +235,8 @@ class MyFeedBackDetailPageState extends State<MyFeedBackDetailPage>{
                       onTap: () {
                         Navigator.pop(context);
                         //拍照选择，打开摄像机
-                        ImagePickers.openCamera().then((media) {
+                        ImagePicker()
+                            .pickerImage(PickImageType.CAMERA).then((media) {
                           if (null != media) {
                             _pickImage(media.path);
                           }
@@ -255,7 +257,8 @@ class MyFeedBackDetailPageState extends State<MyFeedBackDetailPage>{
                     GestureDetector(
                       onTap: () {
                         Navigator.pop(context);
-                        ImagePickers.pickerPaths().then((medias) {
+                        ImagePicker()
+                            .pickerImage(PickImageType.GALLERY).then((medias) {
                           if (null != medias) {
                             _pickImage(medias[0].path);
                           }
